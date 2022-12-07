@@ -29,17 +29,24 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
 var morgan_1 = __importDefault(require("morgan"));
 var dotenv = __importStar(require("dotenv"));
+var hbs_1 = __importDefault(require("hbs"));
+var path_1 = __importDefault(require("path"));
 dotenv.config();
 var PORT = process.env.PORT || 3000;
+var viewsPath = process.env.views_path || "App/Views";
 // create an instance server
 var app = (0, express_1.default)();
 // HTTP request logger middleware
 app.use((0, morgan_1.default)('short'));
+app.use(express_1.default.static(path_1.default.join(__dirname, '../public')));
+//use hbs template engine
+app.set("view engine", "hbs");
+app.set("views", path_1.default.join(__dirname, viewsPath, 'Layouts'));
+//add hbs partials
+hbs_1.default.registerPartials(path_1.default.join(__dirname, viewsPath, "Partials"));
 // add routing for / path
 app.get('/', function (req, res) {
-    res.json({
-        message: 'Hello World 🌍'
-    });
+    res.render('home');
 });
 // start express server
 app.listen(PORT, function () {
