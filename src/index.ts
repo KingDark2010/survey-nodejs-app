@@ -12,6 +12,7 @@ const app: Application = express();
 // HTTP request logger middleware
 app.use(morgan('short'));
 app.use(express.static(path.join(__dirname, '../public')))
+app.use('/bootstrap',express.static(path.join(__dirname, '../node_modules/bootstrap/dist')))
 
 
 //use hbs template engine
