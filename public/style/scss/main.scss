@@ -1,4 +1,12 @@
-.test{
-    margin: 20px;
-    padding: 20px;
+.main-home {
+    background: url('../../assets/images/home.jpg');
+    height: 60vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    h1{
+        padding-top: 20vh;
+        padding-left: 50px;
+        color: white;
+        font-weight: bold;
+    }
 }

@@ -24,6 +24,9 @@ hbs.registerPartials(path.join(__dirname, viewsPath, `Partials`));
 
 
 // add routing for / path
+app.get('/login',  (req: Request, res: Response) => {
+  res.render('login')
+});
 app.get('/', (req: Request, res: Response) => {
   res.render('home')
 });
