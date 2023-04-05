@@ -6,7 +6,7 @@ import path from 'path';
 dotenv.config();
 
 const PORT = process.env.PORT || 3000;
-const viewsPath = process.env.views_path || "App/Views"
+const viewsPath = path.join(__dirname, process.env.views_path || "../public/Views")
 // create an instance server
 const app: Application = express();
 // HTTP request logger middleware
@@ -14,14 +14,12 @@ app.use(morgan('short'));
 app.use(express.static(path.join(__dirname, '../public')))
 app.use('/bootstrap',express.static(path.join(__dirname, '../node_modules/bootstrap/dist')))
 
-
 //use hbs template engine
 app.set("view engine", "hbs");
-app.set("views", path.join(__dirname, viewsPath, 'Layouts'));
+app.set("views", path.join(viewsPath, 'Layouts'));
 
 //add hbs partials
-hbs.registerPartials(path.join(__dirname, viewsPath, `Partials`));
-
+hbs.registerPartials(path.join(viewsPath, `Partials`));
 
 // add routing for / path
 app.get('/login',  (req: Request, res: Response) => {
