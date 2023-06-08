@@ -1,7 +1,0 @@
-{
-  "spec_dir": "build/App/Tests",
-  "spec_files": ["**/*.spec.js"],
-  "helpers": ["Helpers/**/*.js"],
-  "stopSpecOnExpectationFailure": false,
-  "random": false
-}
