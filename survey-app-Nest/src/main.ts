@@ -4,7 +4,7 @@ import { join } from 'path';
 import * as dotenv from 'dotenv';
 import * as hbs from 'hbs';
 import { AppModule } from './app.module';
-import { sqlConnection, queryGenerator } from './App/Utils/sql_db';
+import { sqlConnection } from './App/Utils/sql_db';
 
 async function bootstrap() {
   dotenv.config({ path: join(__dirname, '../../.env') });
@@ -15,10 +15,9 @@ async function bootstrap() {
   //add hbs partials
   hbs.registerPartials(join(viewsPath, `Partials`));
   app.setViewEngine('hbs');
-  queryGenerator(1, {});
 
   sqlConnection.query(
-    `SELECT * FROM public.users
+    `SELECT * FROM Survey_App.Users
                         ORDER BY id ASC `,
     (err, res) => {
       console.log(err, res.rows);
